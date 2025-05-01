@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Okuduğum Kitaplar</title>
+<link rel="icon" type="image/x-icon" href="icon.ico">
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #f6f5f3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    nav {
+      background-color: #15151e;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 40px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-content {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      justify-content: space-between;
+    }
+
+    .nav-left, .nav-right {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-item {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+
+    .nav-item:hover {
+      opacity: 0.7;
+    }
+
+    .content-box {
+      background-color: #ffffff;
+      margin: 60px auto;
+      padding: 60px 80px;
+      max-width: 1200px;
+      min-height: 700px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+    }
+
+    .content-text {
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: left;
+      max-width: 500px;
+    }
+
+    .content-image {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #15151e;
+      color: #ffffff;
+      font-size: 24px;
+      padding: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+
+    .arrow:hover {
+      background-color: #b0b0d4;
+    }
+
+    .arrow.left {
+      left: 10px;
+    }
+
+    .arrow.right {
+      right: 10px;
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-content">
+      <div class="nav-left">
+        <a href="hakkimda.html" class="nav-item">Benim Hakkımda</a>
+        <a href="kitaplar.html" class="nav-item">Okuduğum Kitaplar</a>
+        <a href="ilgialanlarim.html" class="nav-item">İlgi Alanlarım</a>
+      </div>
+      <div class="nav-right">
+        <a href="iletisim.html" class="nav-item">İletişim</a>
+        <a href="admin-login.html" class="nav-item">Admin Girişi</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="content-box">
+    <div class="arrow left" onclick="prevSlide()">&#10094;</div>
+
+    <div class="content" id="content">
+      <!-- İçerik JavaScript tarafından yüklenecek -->
+    </div>
+
+    <div class="arrow right" onclick="nextSlide()">&#10095;</div>
+  </section>
+
+  <script>
+  const books = [
+  {
+    title: "Acımak",
+    desc1: "Reşat Nuri Güntekin'in kaleme aldığı etkileyici bir eserdir. Kitapta öğretmen Zehra'nın hayatı ve başkalarının acılarına karşı duyarsızlığının zamanla nasıl değiştiği anlatılır. Özellikle son bölümde Zehra'nın babasına dair öğrendikleri, okuyucunun bakış açısını tamamen değiştiriyor.",
+    desc2: "Bu kitabı edebiyat projem için okumuştum.",
+    img: "acimak.png"
+  },
+  {
+    title: "Böyle Buyurdu Zerdüşt",
+    desc1: "Ünlü filozof Friedrich Nietzsche tarafından yazılmış önemli bir eserdir. Kitapta Zerdüşt karakteri aracılığıyla insanın kendini aşması, özgür irade ve bireysellik gibi konular işleniyor. Dili zaman zaman yoğun olsa da, felsefi düşünceyi derinlemesine keşfetme imkanı sunuyor.",
+    desc2: "Bu kitabı felsefe öğretmenimin önerisiyle okudum.",
+    img: "zerdust.png"
+  },
+  {
+    title: "Çalıkuşu",
+    desc1: "Halit Ziya Uşaklıgil'in en bilinen eserlerinden biridir. Romanda, Feride adlı genç bir kadının, eğitim hayatı, aşkı ve toplumdaki yeri üzerine derin bir anlatım vardır. Çalıkuşu, aynı zamanda bireyin toplumdaki yerini arayışını da gözler önüne serer.",
+    desc2: "Bu kitabı da 'Acımak' eseri gibi edebiyat proje ödevim için okumuştum.",
+    img: "calikusu.png"
+  },
+  {
+    title: "Araba Sevdası",
+    desc1: "Recaizade Mahmud Ekrem'in yazdığı ve Tanzimat dönemi Türk edebiyatının önemli eserlerinden biridir. Roman, Batılılaşma ve toplumun değişimi üzerine eğlenceli ve eleştirel bir bakış açısı sunar. Başkahraman Bihruz Bey'in araba sevdası, onun toplumsal hayatındaki hayal kırıklıklarını ve içsel çatışmalarını simgeler.",
+    desc2: "Bu kitabı, Tanzimat dönemi konusundayken o dönemden bir örnek olduğu için okudum.",
+    img: "araba_sevdasi.png"
+  }
+];
+
+  let currentIndex = 0;
+
+  function showBook(index) {
+    const book = books[index];
+    const content = `
+      <div class="content-text">
+        <h2>Okuduğum Kitaplar – ${book.title}</h2>
+        <p><strong>${book.title}</strong> kitabı, ${book.desc1}</p>
+        <p>${book.desc2}</p>
+      </div>
+      <img src="${book.img}" alt="${book.title} adlı kitabın kapak görseli" class="content-image">
+    `;
+    document.getElementById('content').innerHTML = content;
+    document.title = book.title + " - Okuduğum Kitaplar";
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % books.length;
+    showBook(currentIndex);
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + books.length) % books.length;
+    showBook(currentIndex);
+  }
+
+  window.onload = () => showBook(currentIndex);
+</script>
+
+</body>
+</html>

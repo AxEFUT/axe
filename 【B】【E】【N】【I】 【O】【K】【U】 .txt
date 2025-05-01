@@ -1,0 +1,34 @@
+Merhaba ben Samet Yıldız.
+
+ 10-F 7098
+
+
+Bu siteyi yaparken sitenin tasarımının güzel olmasını istedim. Ama elimde olan bilgilerle birçok şeyi yapamadım.
+Bu yüzden Youtube ve GitHub üzerinden belirli JavaScript ve CSS kodlarını öğrendim ve öğrenerek yazdım.
+Site yazılırken sadece öğrettiğiniz kodları kullanmadım.
+
+Kitaplar ve ilgi alanları sayfasında "content slider" ile içerikleri html ile değil javascript ile kutuya uyarladım  
+
+İletişim sayfasında yazılan mailler boşa yazılmamalı dedim ve bunun "local storage" üzerinde tutulabileceğini öğrendim.
+
+Bunu arkadaşımdan öğrenerek kodumda nereye yazmam gerektiğini öğrendim ve uyguladım.
+ "Local Storage" de tutulan mailler sadece adminlerin giriş yapabileceği (giriş sayfasından "admin" "nihat" kullanıcı adı ve şifreyle) admin panelindeki bildirimler sayfasına gönderiliyor. Buradan bize yazılan mailler gönderildiği tarih, saat, dakika, saniyesine kadar belirtiliyor.
+Böylece bırakılan maillerin bir amacı olmuş oldu.
+
+Çoğu bunun gibi js kodları sonradan öğrenilerek yazıldı zaten hali hazırda bunları öğretmediniz.
+
+
+Kodları Visual Studio ve Canvas üzerinden yazdım bunlar hatalarımı görmek ve kodu düzgün tutmada yardımcı oldu.
+
+
+
+Tekrarlıyorum admin girişi 
+Kullanıcı Adı:   admin
+Şifre:  nihat  
+
+
+
+Sitenin index sayfası hakkımda.html dir diğer sayfalar buna bağlı olarak devam eder.
+
+
+

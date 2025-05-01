@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bildirimler</title>
+  <link rel="icon" type="image/x-icon" href="icon.ico">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f6f5f3;
+    }
+
+    nav {
+      background-color: #15151e;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 40px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-content {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      justify-content: space-between;
+    }
+
+    .nav-left, .nav-right {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-item {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+
+    .nav-item:hover {
+      opacity: 0.7;
+    }
+
+    .content-box {
+      background-color: #ffffff;
+      margin: 60px auto;
+      padding: 60px 80px;
+      max-width: 1200px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+    }
+
+    .notification {
+      padding: 15px;
+      background-color: #f1f1f1;
+      margin: 10px 0;
+      border-radius: 8px;
+      max-height: 300px;
+      overflow-y: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .notification p {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+
+    .notification .date {
+      font-size: 12px;
+      color: #777;
+    }
+
+    .delete-btn {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      color: #f44336;
+      font-size: 18px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-content">
+      <div class="nav-left">
+        <a href="admin-panel.html" class="nav-item">Admin Paneli</a>
+        <a href="bildirim.html" class="nav-item">Bildirimler</a>
+      </div>
+      <div class="nav-right">
+        <a href="hakkimda.html" class="nav-item">Kullanıcı Görünümüne Dön</a>
+      </div>
+    </div>
+  </nav>
+
+ 
+  <section class="content-box">
+    <h2>Bildirimler</h2>
+
+    
+    <div id="notifications-container"></div>
+  </section>
+
+  <script>
+    const formLogs = JSON.parse(localStorage.getItem('formLogs')) || [];
+
+    const notificationsContainer = document.getElementById("notifications-container");
+
+    
+    const formatDate = (dateString) => {
+      const date = new Date(dateString);
+      return `${date.getDate().toString().padStart(2, '0')}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getFullYear()} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+    };
+
+    
+    const renderNotifications = () => {
+      notificationsContainer.innerHTML = ""; 
+
+      if (formLogs.length > 0) {
+        formLogs.forEach((form, index) => {
+          const notification = document.createElement("div");
+          notification.classList.add("notification");
+
+          notification.innerHTML = `
+            <div>
+              <p><strong>Ad:</strong> ${form.name}</p>
+              <p><strong>E-posta:</strong> ${form.email}</p>
+              <p><strong>Mesaj:</strong> ${form.message}</p>
+              <p class="date"><strong>Gönderilme Tarihi:</strong> ${formatDate(form.date)}</p>
+            </div>
+            <button class="delete-btn" onclick="deleteNotification(${index})">🗑️</button>
+          `;
+
+          notificationsContainer.appendChild(notification);
+        });
+      } else {
+        notificationsContainer.innerHTML = "<p>Henüz herhangi bir form gönderilmedi.</p>";
+      }
+    };
+
+    
+    const deleteNotification = (index) => {
+      const confirmation = confirm("Bu bildirimi silmek istediğinizden emin misiniz?");
+      if (confirmation) {
+        formLogs.splice(index, 1);
+        localStorage.setItem('formLogs', JSON.stringify(formLogs));
+        renderNotifications();
+      }
+    };
+
+    renderNotifications();
+  </script>
+
+</body>
+</html>

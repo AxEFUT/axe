@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>İlgi Alanlarım</title>
+  <link rel="icon" type="image/x-icon" href="icon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      background-color: #f6f5f3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    nav {
+      background-color: #15151e;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 40px;
+    }
+    .nav-content {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      justify-content: space-between;
+    }
+    .nav-left, .nav-right {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-item {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .content-box {
+      background-color: #ffffff;
+      margin: 60px auto;
+      padding: 60px 80px;
+      max-width: 1200px;
+      min-height: 700px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .content {
+      text-align: center;
+    }
+    .content h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .content p {
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 10px auto;
+    }
+    .content img {
+      max-width: 90%;
+      max-height: 500px;
+      width: auto;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #15151e;
+      color: #ffffff;
+      font-size: 24px;
+      padding: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+    .arrow:hover {
+      background-color: #b0b0d4;
+    }
+    .arrow.left { left: 10px; }
+    .arrow.right { right: 10px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-content">
+      <div class="nav-left">
+        <a href="hakkimda.html" class="nav-item">Benim Hakkımda</a>
+        <a href="kitaplar.html" class="nav-item">Okuduğum Kitaplar</a>
+        <a href="ilgialanlarim.html" class="nav-item">İlgi Alanlarım</a>
+      </div>
+      <div class="nav-right">
+        <a href="iletisim.html" class="nav-item">İletişim</a>
+        <a href="admin-login.html" class="nav-item">Admin Girişi</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="content-box">
+    <div class="arrow left" onclick="prevSlide()">&#10094;</div>
+    <div class="content" id="content"></div>
+    <div class="arrow right" onclick="nextSlide()">&#10095;</div>
+  </section>
+
+  <script>
+    const slides = [
+      {
+        html: `
+          <h2>Bilgisayar ve Oyunlar</h2>
+          <p>Boş zamanlarımı bilgisayarla uğraşarak ve video oyunları oynayarak geçiriyorum.</p>
+          <br />
+          <p>İşte severek oynadığım bazı oyunlardan görüntü.</p>
+        `
+      },
+      {
+        html: `
+          <h2>Battlefield 1</h2>
+          <img src="battlefield.jpg" alt="Battlefield 1">
+        `
+      },
+      {
+        html: `
+          <h2>God of War: Ragnarok</h2>
+          <img src="ragnarok.jpg" alt="God of War: Ragnarok">
+        `
+      },
+      {
+        html: `
+          <h2>Forza Horizon 5</h2>
+          <img src="golf.jpg" alt="Forza Horizon 5">
+        `
+      }
+    ];
+
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      document.getElementById('content').innerHTML = slides[index].html;
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(currentIndex);
+    }
+
+    window.onload = () => showSlide(currentIndex);
+  </script>
+</body>
+</html>

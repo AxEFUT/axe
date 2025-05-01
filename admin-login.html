@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Girişi</title>
+  <link rel="icon" type="image/x-icon" href="icon.ico">
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #f6f5f3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .login-box {
+      background-color: #fff;
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .login-box h2 {
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      background-color: #15151e;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .login-box button:hover {
+      background-color: #333;
+    }
+
+    .error-message {
+      color: #f44336;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Admin Girişi</h2>
+    <form id="admin-login-form">
+      <input type="text" id="username" placeholder="Kullanıcı Adı" required>
+      <input type="password" id="password" placeholder="Şifre" required>
+      <button type="submit">Giriş Yap</button>
+    </form>
+    <p id="error-message" class="error-message" style="display: none;">Kullanıcı adı veya şifre yanlış. Lütfen tekrar deneyin.</p>
+  </div>
+
+  <script>
+    
+    const adminUsername = "admin";
+    const adminPassword = "nihat";
+
+    document.getElementById("admin-login-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === adminUsername && password === adminPassword) {
+        
+        window.location.href = "admin-panel.html"; // Admin paneli sayfasına yönlendirme
+      } else {
+        
+        document.getElementById("error-message").style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>

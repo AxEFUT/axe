@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İletişim</title>
+  <link rel="icon" type="image/x-icon" href="icon.ico">
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f6f5f3;
+      color: #111;
+    }
+
+    nav {
+      background-color: #15151e;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 40px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-content {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      justify-content: space-between;
+    }
+
+    .nav-left, .nav-right {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-item {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+
+    .nav-item:hover {
+      opacity: 0.7;
+    }
+
+    .content-box {
+      background-color: #ffffff;
+      margin: 60px auto;
+      padding: 60px 80px;
+      max-width: 1200px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .content-box h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      margin-left: 40px;
+    }
+
+    .content-box p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-left: 40px;
+      max-width: 700px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    .form-group input, .form-group textarea {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: #4CAF50;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: #15151e;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #333;
+    }
+
+    .notification {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.3s, opacity 0.3s;
+      z-index: 1000;
+    }
+    .notification.show {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-content">
+      <div class="nav-left">
+        <a href="hakkimda.html" class="nav-item">Benim Hakkımda</a>
+        <a href="kitaplar.html" class="nav-item">Okuduğum Kitaplar</a>
+        <a href="ilgialanlarim.html" class="nav-item">İlgi Alanlarım</a>
+      </div>
+      <div class="nav-right">
+        <a href="iletisim.html" class="nav-item">İletişim</a>
+        <a href="admin-login.html" class="nav-item">Admin Giriş</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="content-box">
+    <h2>İletişim</h2>
+    <form id="contact-form">
+      <div class="form-group">
+        <label for="name">Adınız:</label>
+        <input type="text" id="name" name="name" placeholder="Adınızı girin" required>
+      </div>
+      <div class="form-group">
+        <label for="email">E-posta:</label>
+        <input type="email" id="email" name="email" placeholder="E-posta adresinizi girin" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Mesajınız:</label>
+        <textarea id="message" name="message" placeholder="Mesajınızı buraya yazın" required></textarea>
+      </div>
+      <button type="submit">Gönder</button>
+    </form>
+  </section>
+
+  <div id="notification" class="notification">Mesajınız başarıyla gönderildi!</div>
+
+  <script>
+  document.getElementById("contact-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    const now = new Date();
+    const formattedDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+
+    const formData = {
+      name: name,
+      email: email,
+      message: message,
+      date: formattedDate
+    };
+
+    let formLogs = JSON.parse(localStorage.getItem('formLogs')) || [];
+    formLogs.push(formData);
+
+    localStorage.setItem('formLogs', JSON.stringify(formLogs));
+
+    const notification = document.getElementById("notification");
+    notification.classList.add("show");
+
+    setTimeout(() => notification.classList.remove("show"), 5000);
+
+    document.getElementById("contact-form").reset();
+  });
+  </script>
+</body>
+</html>
